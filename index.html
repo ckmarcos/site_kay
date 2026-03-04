@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Kay 🖤🤍</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #000000, #111111);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 80px 20px 40px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    font-size: 55px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.mensagem {
+    font-size: 22px;
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.secao-titulo {
+    margin-top: 70px;
+    font-size: 28px;
+    letter-spacing: 3px;
+    border-bottom: 1px solid white;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.galeria, .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 50px;
+}
+
+.galeria img, .videos video {
+    width: 100%;
+    border-radius: 15px;
+    transition: 0.4s;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+}
+
+.galeria img:hover, .videos video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(255,255,255,0.3);
+}
+
+.botao-musica {
+    margin-top: 30px;
+    padding: 14px 30px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-musica:hover {
+    background: #ccc;
+}
+
+footer {
+    padding: 60px;
+    font-size: 15px;
+    opacity: 0.7;
+    letter-spacing: 2px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<header>
+    <h1>Kay 🖤🤍</h1>
+    <div class="mensagem">
+        Foi assim quando te vi pela primeira vez… <br><br>
+        Mesmo sendo dentro de um jogo, eu senti algo diferente.
+        Entre momentos simples, risadas e partidas juntos,
+        nasceu algo que saiu da tela e veio direto pro coração. <br><br>
+        Preto e branco como nosso time… mas gigante como o sentimento.
+    </div>
+
+    <button class="botao-musica" onclick="document.getElementById('musica').play()">
+        ▶️ Tocar nossa música
+    </button>
+</header>
+
+<h2 class="secao-titulo">NOSSAS FOTOS</h2>
+
+<section class="galeria">
+    <img src="foto1.jpeg" alt="Momento 1">
+    <img src="foto2.png" alt="Momento 2">
+    <img src="foto3.jpeg" alt="Momento 3">
+</section>
+
+<h2 class="secao-titulo">NOSSOS MOMENTOS EM VÍDEO</h2>
+
+<section class="videos">
+    <video controls>
+        <source src="video1.mp4" type="video/mp4">
+    </video>
+
+    <video controls>
+        <source src="video2.mp4" type="video/mp4">
+    </video>
+</section>
+
+<footer>
+    🖤 Desde o primeiro momento… pra sempre 🤍
+</footer>
+
+</body>
+</html>
