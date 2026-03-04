@@ -2,87 +2,114 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kay 🖤🤍</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-body {
+* {
     margin: 0;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(to bottom, #000000, #111111);
-    color: white;
-    text-align: center;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Fundo animado */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Hero */
 header {
-    padding: 80px 20px 40px;
-    animation: fadeIn 2s ease-in-out;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    padding: 20px;
 }
 
 h1 {
-    font-size: 55px;
-    letter-spacing: 4px;
+    font-size: 65px;
+    letter-spacing: 6px;
     margin-bottom: 20px;
+    animation: fadeIn 2s ease forwards;
 }
 
 .mensagem {
     font-size: 22px;
-    max-width: 750px;
-    margin: auto;
-    line-height: 1.7;
+    max-width: 800px;
+    min-height: 120px;
     opacity: 0.9;
-}
-
-.secao-titulo {
-    margin-top: 70px;
-    font-size: 28px;
-    letter-spacing: 3px;
-    border-bottom: 1px solid white;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.galeria, .videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 50px;
-}
-
-.galeria img, .videos video {
-    width: 100%;
-    border-radius: 15px;
-    transition: 0.4s;
-    box-shadow: 0 0 30px rgba(255,255,255,0.1);
-}
-
-.galeria img:hover, .videos video:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px rgba(255,255,255,0.3);
 }
 
 .botao-musica {
     margin-top: 30px;
-    padding: 14px 30px;
+    padding: 15px 35px;
     background: white;
     color: black;
     border: none;
-    border-radius: 30px;
-    font-size: 16px;
+    border-radius: 40px;
+    font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .botao-musica:hover {
-    background: #ccc;
+    background: #ddd;
+    transform: scale(1.05);
 }
 
+/* Seções */
+section {
+    padding: 100px 50px;
+    text-align: center;
+}
+
+.secao-titulo {
+    font-size: 32px;
+    margin-bottom: 50px;
+    letter-spacing: 4px;
+}
+
+/* Galeria */
+.galeria, .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.galeria img, .videos video {
+    width: 100%;
+    border-radius: 20px;
+    transition: 0.5s;
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.galeria img:hover, .videos video:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 40px rgba(255,255,255,0.4);
+}
+
+/* Footer */
 footer {
     padding: 60px;
-    font-size: 15px;
-    opacity: 0.7;
-    letter-spacing: 2px;
+    opacity: 0.6;
 }
 
+/* Animações */
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(20px);}
     to {opacity: 1; transform: translateY(0);}
@@ -91,48 +118,90 @@ footer {
 </head>
 <body>
 
+<canvas id="bg"></canvas>
+
 <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <header>
     <h1>Kay 🖤🤍</h1>
-    <div class="mensagem">
-        Foi assim quando te vi pela primeira vez… <br><br>
-        Mesmo sendo dentro de um jogo, eu senti algo diferente.
-        Entre momentos simples, risadas e partidas juntos,
-        nasceu algo que saiu da tela e veio direto pro coração. <br><br>
-        Preto e branco como nosso time… mas gigante como o sentimento.
-    </div>
-
+    <div class="mensagem" id="texto"></div>
     <button class="botao-musica" onclick="document.getElementById('musica').play()">
         ▶️ Tocar nossa música
     </button>
 </header>
 
-<h2 class="secao-titulo">NOSSAS FOTOS</h2>
-
-<section class="galeria">
-    <img src="foto1.jpeg" alt="Momento 1">
-    <img src="foto2.png" alt="Momento 2">
-    <img src="foto3.jpeg" alt="Momento 3">
+<section>
+    <h2 class="secao-titulo">NOSSAS FOTOS</h2>
+    <div class="galeria">
+        <img src="foto1.jpeg">
+        <img src="foto2.png">
+        <img src="foto3.jpeg">
+    </div>
 </section>
 
-<h2 class="secao-titulo">NOSSOS MOMENTOS EM VÍDEO</h2>
-
-<section class="videos">
-    <video controls>
-        <source src="video1.mp4" type="video/mp4">
-    </video>
-
-    <video controls>
-        <source src="video2.mp4" type="video/mp4">
-    </video>
+<section>
+    <h2 class="secao-titulo">NOSSOS MOMENTOS EM VÍDEO</h2>
+    <div class="videos">
+        <video controls src="video1.mp4"></video>
+        <video controls src="video2.mp4"></video>
+    </div>
 </section>
 
 <footer>
     🖤 Desde o primeiro momento… pra sempre 🤍
 </footer>
+
+<script>
+// Texto digitando
+const texto = "Foi assim quando te vi pela primeira vez… Mesmo sendo dentro de um jogo, algo mudou aqui dentro. Preto e branco como nosso time… mas infinito como o que eu sinto.";
+let i = 0;
+function digitar() {
+    if (i < texto.length) {
+        document.getElementById("texto").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(digitar, 40);
+    }
+}
+digitar();
+
+// Fundo partículas
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 120; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
