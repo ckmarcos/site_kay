@@ -8,199 +8,243 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #000;
-    color: white;
-    overflow-x: hidden;
+body{
+    font-family:'Poppins',sans-serif;
+    color:white;
+    background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+    url('bg-corinthians.jpg');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
 }
 
-/* Fundo animado */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
+/* MENU */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(0,0,0,0.9);
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    padding:20px;
+    z-index:1000;
 }
 
-/* Hero */
-header {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center; 
-    padding: 20px;
+nav button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:16px;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-h1 {
-    font-size: 65px;
-    letter-spacing: 6px;
-    margin-bottom: 20px;
-    animation: fadeIn 2s ease forwards;
+nav button:hover{
+    color:#ccc;
 }
 
-.mensagem {
-    font-size: 22px;
-    max-width: 800px;
-    min-height: 120px;
-    opacity: 0.9;
+/* BOTÃO MUSICA */
+.controle-musica{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:2000;
 }
 
-.botao-musica {
-    margin-top: 30px;
-    padding: 15px 35px;
-    background: white;
-    color: black;
-    border: none;
-    border-radius: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+#btnMusica{
+    background:linear-gradient(45deg, #000, #333);
+    color:white;
+    border:2px solid white;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(255,255,255,0.3);
 }
 
-.botao-musica:hover {
-    background: #ddd;
-    transform: scale(1.05);
+#btnMusica:hover{
+    background:white;
+    color:black;
+    box-shadow:0 0 25px rgba(255,255,255,0.7);
 }
 
-/* Seções */
-section {
-    padding: 100px 50px;
-    text-align: center;
+/* PÁGINAS */
+.pagina{
+    display:none;
+    min-height:100vh;
+    padding:140px 50px 80px;
+    text-align:center;
+    animation:fade 0.6s ease;
 }
 
-.secao-titulo {
-    font-size: 32px;
-    margin-bottom: 50px;
-    letter-spacing: 4px;
+.pagina.ativa{
+    display:block;
+}
+
+h1{
+    font-size:60px;
+    margin-bottom:30px;
+}
+
+h2{
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+.texto{
+    font-size:22px;
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+}
+
+/* FOTO PRINCIPAL */
+.foto-destaque{
+    margin:40px auto;
+    max-width:500px;
+}
+
+.foto-destaque img{
+    width:100%;
+    border-radius:25px;
+    border:3px solid white;
+    box-shadow:0 0 40px rgba(255,255,255,0.4);
+    transition:0.5s ease;
+}
+
+.foto-destaque img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 70px rgba(255,255,255,0.8);
 }
 
 /* Galeria */
-.galeria, .videos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+.galeria, .videos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:40px;
 }
 
-.galeria img, .videos video {
-    width: 100%;
-    border-radius: 20px;
-    transition: 0.5s;
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+.galeria img, .videos video{
+    width:100%;
+    border-radius:20px;
+    transition:0.4s;
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
-.galeria img:hover, .videos video:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 40px rgba(255,255,255,0.4);
+.galeria img:hover, .videos video:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 40px rgba(255,255,255,0.6);
 }
 
-/* Footer */
-footer {
-    padding: 60px;
-    opacity: 0.6;
-}
-
-/* Animações */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 </style>
 </head>
 <body>
 
-<canvas id="bg"></canvas>
+<nav>
+    <button onclick="mostrar('inicio')">INÍCIO</button>
+    <button onclick="mostrar('kay')">SOBRE A KAY</button>
+    <button onclick="mostrar('fotos')">FOTOS</button>
+    <button onclick="mostrar('videos')">VÍDEOS</button>
+</nav>
+
+<div class="controle-musica">
+    <button id="btnMusica" onclick="toggleMusica()">▶️ Tocar Música</button>
+</div>
 
 <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+<source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<header>
-    <h1>Kay 🖤🤍</h1>
-    <div class="mensagem" id="texto"></div>
-    <button class="botao-musica" onclick="document.getElementById('musica').play()">
-        ▶️ Tocar nossa música
-    </button>
-</header>
+<!-- INICIO -->
+<div id="inicio" class="pagina ativa">
 
-<section>
-    <h2 class="secao-titulo">NOSSAS FOTOS</h2>
+    <h1>Kay 🖤🤍</h1>
+
+    <div class="foto-destaque">
+        <img src="nossa-foto.jpeg" alt="Eu e Kay">
+    </div>
+
+    <div class="texto">
+        Foi assim quando te vi pela primeira vez… <br><br>
+        Preto e branco como nosso time,  
+        forte como o Corinthians,  
+        e verdadeiro como nossa amizade.  
+        <br><br>
+        Desde aquele momento, eu soube que você seria especial.
+    </div>
+
+</div>
+
+<!-- SOBRE A KAY -->
+<div id="kay" class="pagina">
+    <h2>O quanto eu gosto da Kay 🖤</h2>
+    <div class="texto">
+        Kay, você é uma das pessoas mais importantes pra mim.<br><br>
+        Nossa amizade começou simples,
+        mas virou algo forte, verdadeiro e cheio de significado.<br><br>
+        Assim como o Corinthians nunca abandona sua história,
+        eu nunca vou abandonar você.<br><br>
+        Mesmo que tudo tenha começado dentro de um jogo,
+        o que ficou foi real.
+    </div>
+</div>
+
+<!-- FOTOS -->
+<div id="fotos" class="pagina">
+    <h2>NOSSAS FOTOS</h2>
     <div class="galeria">
         <img src="foto1.jpeg">
         <img src="foto2.png">
         <img src="foto3.jpeg">
     </div>
-</section>
+</div>
 
-<section>
-    <h2 class="secao-titulo">NOSSOS MOMENTOS EM VÍDEO</h2>
+<!-- VIDEOS -->
+<div id="videos" class="pagina">
+    <h2>NOSSOS MOMENTOS EM VÍDEO</h2>
     <div class="videos">
-        <video controls src="video1.mp4"></video>
-        <video controls src="video2.mp4"></video>
-    </div>
-</section>
+    <video controls>
+        <source src="video1.mp4" type="video/mp4">
+    </video>
 
-<footer>
-    🖤 Desde o primeiro momento… pra sempre 🤍
-</footer>
+    <video controls>
+        <source src="video2.mp4" type="video/mp4">
+    </video>
+</div>
 
 <script>
-// Texto digitando
-const texto = "Foi assim quando te vi pela primeira vez… Mesmo sendo dentro de um jogo, algo mudou aqui dentro. Preto e branco como nosso time… mas infinito como o que eu sinto.";
-let i = 0;
-function digitar() {
-    if (i < texto.length) {
-        document.getElementById("texto").innerHTML += texto.charAt(i);
-        i++;
-        setTimeout(digitar, 40);
+function mostrar(id){
+    document.querySelectorAll('.pagina').forEach(p => p.classList.remove('ativa'));
+    document.getElementById(id).classList.add('ativa');
+}
+
+const musica = document.getElementById("musica");
+const btn = document.getElementById("btnMusica");
+
+function toggleMusica(){
+    if(musica.paused){
+        musica.play();
+        btn.innerHTML = "⏸️ Pausar Música";
+    } else {
+        musica.pause();
+        btn.innerHTML = "▶️ Tocar Música";
     }
 }
-digitar();
-
-// Fundo partículas
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 120; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5
-    });
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "white";
-    particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    });
-    requestAnimationFrame(animate);
-}
-animate();
 </script>
 
 </body>
